@@ -268,12 +268,12 @@ def marks_list(request, stud_id):
         except StudentCourse.DoesNotExist:
             sc = StudentCourse(student=stud, course=ass.course)
             sc.save()
-            sc.marks_set.create(type='I', name='Internal test 1')
-            sc.marks_set.create(type='I', name='Internal test 2')
-            sc.marks_set.create(type='I', name='Internal test 3')
+            sc.marks_set.create(type='I', name='Class test 1')
+            sc.marks_set.create(type='I', name='Class test 2')
+            sc.marks_set.create(type='I', name='Class test 3')
             sc.marks_set.create(type='E', name='Event 1')
             sc.marks_set.create(type='E', name='Event 2')
-            sc.marks_set.create(type='S', name='Semester End Exam')
+            sc.marks_set.create(type='S', name='Semester Final Exam')
         sc_list.append(sc)
 
     return render(request, 'info/marks_list.html', {'sc_list': sc_list})
