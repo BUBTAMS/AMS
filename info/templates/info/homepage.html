@@ -17,8 +17,8 @@
 
     <!-- Custom styles for this template -->
       <link href="{% static '/info/homepage/css/heroic-features.css' %}" rel="stylesheet">
-          <link href="{% static '/info/bootstrap/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-
+      <link href="{% static '/info/bootstrap/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="{% static '/info/bootstrap/css/own.css' %}">
 
 
   </head>
@@ -26,9 +26,9 @@
   <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark my_bg fixed-top">
       <div class="container">
-          <a class="navbar-brand" href="{% url 'index' %}">BUBT Attendance Management System</a>
+          <a class="navbar-brand" href="{% url 'index' %}"><img class="header_logo" src="{% static 'info/images/bubt.png' %}" alt=""> BUBT Attendance Management System</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -49,7 +49,7 @@
     <div class="container">
 
       <!-- Jumbotron Header -->
-      <header class="jumbotron my-4">
+      <header class="welcome_note my-4">
         <h1 class="display-3 text-capitalize">Welcome {{ request.user.student.name }}</h1>
 {#        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>#}
 {#        <a href="#" class="btn btn-primary btn-lg">Call to action!</a>#}
@@ -57,7 +57,7 @@
 
       <!-- Page Features -->
       <div class="row text-center">
-
+        <div class="col-lg-2"></div>
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
               <a href="{% url 'attendance' request.user.student.USN %}">
@@ -65,11 +65,10 @@
               </a>
               <div class="card-body">
               <h4 class="card-title">Attendance</h4>
-              <p class="card-text">View the attendance status for each of your courses. The attendance of each course is
-                  also displayed as list of classes that were conducted.</p>
+              <p class="card-text">"Attend today, and achieve tomorrow."</p>
             </div>
             <div class="card-footer">
-                <a class="btn btn-primary" role="button" href="{% url 'attendance' request.user.student.USN %}"> View Attendance</a>
+                <a class="my_btn" role="button" href="{% url 'attendance' request.user.student.USN %}"> View Attendance</a>
             </div>
           </div>
         </div>
@@ -77,15 +76,14 @@
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
               <a href="{% url 'marks_list' request.user.student.USN %}">
-                <img class="card-img-top" src="{% static 'info/images/marks.jpg' %}" alt="">
+                <img class="card-img-top" src="{% static 'info/images/marks.png' %}" alt="">
               </a>
               <div class="card-body">
               <h4 class="card-title">Marks</h4>
-              <p class="card-text">View the marks obtained for each of your courses. These include the marks of 3
-                  internal assessment, 2 events and the Semester End Exam  </p>
+              <p class="card-text">"Work hard and smartly to set your marks."</p>
             </div>
             <div class="card-footer">
-                <a class="btn btn-primary" role="button" href="{% url 'marks_list' request.user.student.USN %}">View Marks</a>
+                <a class="my_btn" role="button" href="{% url 'marks_list' request.user.student.USN %}">View Marks</a>
             </div>
           </div>
         </div>
@@ -93,15 +91,15 @@
         <div class="col-lg-3 col-md-6 mb-4">
           <div class="card">
               <a href="{% url 'timetable' request.user.student.class_id_id %}">
-                <img class="card-img-top" src="{% static 'info/images/timetable.png' %}" alt="">
+                <img class="card-img-top" src="{% static 'info/images/ttt.png' %}" alt="">
               </a>
               <div class="card-body">
               <h4 class="card-title">TimeTable</h4>
-              <p class="card-text">View the timetable in a tabular form. The timetable displays all the courses of the
-                  student and the time and day at which they are conducted.</p>
+              <p class="card-text">"The key is in not spending time, but in investing it."</p>
+              <!-- <p class="card-text">"The trouble is, you think you have time."</p> -->
             </div>
             <div class="card-footer">
-                <a class="btn btn-primary" role="button" href="{% url 'timetable' request.user.student.class_id_id %}">View TimeTable</a>
+                <a class="my_btn" role="button" href="{% url 'timetable' request.user.student.class_id_id %}">View TimeTable</a>
             </div>
           </div>
         </div>
@@ -111,6 +109,53 @@
       <!-- /.row -->
 
     </div>
+
+    <!-- Page footer -->
+    <footer class="footer_section">
+      <div class="footer_area">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="footer_top">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="intro">
+                      <h3>About us</h3>
+                      <p>BUBT Attendance Management System-AMS provide all the facility to the teacher and student to easier their communications while doing class exam schedule marks and making progress report.</p>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="link1">
+                      <h4>Important Link</h4>
+                      <ul>
+                        <li><a href="#">BUBT Website</a></li>
+                        <li><a href="#">CSE-BUBT Website</a></li>
+                        <li><a href="#">BUBT Annex</a></li>
+                        <li><a href="#">EEE-BUBT Website</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="link1 contact">
+                      <h4>Contact</h4>
+                      <ul>
+                        <li><a href="#">Rupnagar, Mirpur-2, Dhaka-1216</a></li>
+                        <li><a href="#">info@bubt.edu.bd</a></li>
+                        <li><a href="#">+880 1712 345 678</a></li>
+                        <li><a href="#">+880 1712 345 678</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copyright_area">
+        <p>&copy; 2021 <a href="#">Team Olosh-Mostisko</a> All Right Reserved.</p>
+      </div>
+    </footer>
     <!-- /.container -->
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
