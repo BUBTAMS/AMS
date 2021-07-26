@@ -13,14 +13,14 @@ sex_choice = (
 
 time_slots = (
     ('8:30 - 10:00', '8:30 - 10:00'),
+    ('09:00 - 10:30', '09:00 - 10:30'),
     ('10:00 - 11:30', '10:00 - 11:30'),
+    ('10:30 - 12:00', '10:30 - 12:00'),
     ('11:30 - 13:00', '11:30 - 13:00'),
     ('13:20 - 14:50', '13:20 - 14:50'),
     ('14:50 - 16:20', '14:50 - 16:20'),
-    ('16:20 - 17:40', '16:20 - 17:40'),
-    ('09:00 - 10:30', '09:00 - 10:30'),
-    ('10:30 - 12:00', '10:30 - 12:00'),
     ('15:00 - 16:30', '15:00 - 16:30'),
+    ('16:20 - 17:40', '16:20 - 17:40'),
     ('16:30 - 18:00', '16:30 - 18:00'),
     ('18:00 - 19:30', '18:00 - 19:30'),
     ('19:30 - 21:00', '19:30 - 21:00'),
@@ -133,7 +133,7 @@ class Assign(models.Model):
 
 class AssignTime(models.Model):
     assign = models.ForeignKey(Assign, on_delete=models.CASCADE)
-    period = models.CharField(max_length=50, choices=time_slots, default='11:00 - 11:50')
+    period = models.CharField(max_length=50, choices=time_slots, default='8:30 - 10:00')
     day = models.CharField(max_length=15, choices=DAYS_OF_WEEK)
 
 
@@ -151,7 +151,7 @@ class Attendance(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     attendanceclass = models.ForeignKey(AttendanceClass, on_delete=models.CASCADE, default=1)
-    date = models.DateField(default='2020-06-01')
+    date = models.DateField(default='2021-04-15')
     status = models.BooleanField(default='True')
 
     def __str__(self):
