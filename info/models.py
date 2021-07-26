@@ -12,15 +12,18 @@ sex_choice = (
 )
 
 time_slots = (
-    ('7:30 - 8:30', '7:30 - 8:30'),
-    ('8:30 - 9:30', '8:30 - 9:30'),
-    ('9:30 - 10:30', '9:30 - 10:30'),
-    ('11:00 - 11:50', '11:00 - 11:50'),
-    ('11:50 - 12:40', '11:50 - 12:40'),
-    ('12:40 - 1:30', '12:40 - 1:30'),
-    ('2:30 - 3:30', '2:30 - 3:30'),
-    ('3:30 - 4:30', '3:30 - 4:30'),
-    ('4:30 - 5:30', '4:30 - 5:30'),
+    ('8:30 - 10:00', '8:30 - 10:00'),
+    ('10:00 - 11:30', '10:00 - 11:30'),
+    ('11:30 - 13:00', '11:30 - 13:00'),
+    ('13:20 - 14:50', '13:20 - 14:50'),
+    ('14:50 - 16:20', '14:50 - 16:20'),
+    ('16:20 - 17:40', '16:20 - 17:40'),
+    ('09:00 - 10:30', '09:00 - 10:30'),
+    ('10:30 - 12:00', '10:30 - 12:00'),
+    ('15:00 - 16:30', '15:00 - 16:30'),
+    ('16:30 - 18:00', '16:30 - 18:00'),
+    ('18:00 - 19:30', '18:00 - 19:30'),
+    ('19:30 - 21:00', '19:30 - 21:00'),
 )
 
 DAYS_OF_WEEK = (
@@ -29,15 +32,15 @@ DAYS_OF_WEEK = (
     ('Wednesday', 'Wednesday'),
     ('Thursday', 'Thursday'),
     ('Friday', 'Friday'),
-    ('Saturday', 'Saturday'),
+    ('Sunday', 'Sunday'),
 )
 
 test_name = (
-    ('Internal test 1', 'Internal test 1'),
-    ('Internal test 2', 'Internal test 2'),
-    ('Internal test 3', 'Internal test 3'),
-    ('Event 1', 'Event 1'),
-    ('Event 2', 'Event 2'),
+    ('Class test 1', 'Class test 1'),
+    ('Class test 2', 'Class test 2'),
+    ('Class test 3', 'Class test 3'),
+    ('Quiz Test', 'Quiz Test'),
+    ('Mid Exam', 'Mid Exam'),
     ('Semester End Exam', 'Semester End Exam'),
 )
 
@@ -148,7 +151,7 @@ class Attendance(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     attendanceclass = models.ForeignKey(AttendanceClass, on_delete=models.CASCADE, default=1)
-    date = models.DateField(default='2018-10-23')
+    date = models.DateField(default='2020-06-01')
     status = models.BooleanField(default='True')
 
     def __str__(self):
@@ -230,7 +233,7 @@ class StudentCourse(models.Model):
 
 class Marks(models.Model):
     studentcourse = models.ForeignKey(StudentCourse, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, choices=test_name, default='Internal test 1')
+    name = models.CharField(max_length=50, choices=test_name, default='Class test 1')
     marks1 = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
 
     class Meta:
@@ -245,7 +248,7 @@ class Marks(models.Model):
 
 class MarksClass(models.Model):
     assign = models.ForeignKey(Assign, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, choices=test_name, default='Internal test 1')
+    name = models.CharField(max_length=50, choices=test_name, default='Class test 1')
     status = models.BooleanField(default='False')
 
     class Meta:
@@ -277,7 +280,7 @@ days = {
     'Wednesday': 3,
     'Thursday': 4,
     'Friday': 5,
-    'Saturday': 6,
+    'Sunday': 6,
 }
 
 
@@ -304,11 +307,11 @@ def create_marks(sender, instance, **kwargs):
                 except StudentCourse.DoesNotExist:
                     sc = StudentCourse(student=instance, course=ass.course)
                     sc.save()
-                    sc.marks_set.create(name='Internal test 1')
-                    sc.marks_set.create(name='Internal test 2')
-                    sc.marks_set.create(name='Internal test 3')
-                    sc.marks_set.create(name='Event 1')
-                    sc.marks_set.create(name='Event 2')
+                    sc.marks_set.create(name='Class test 1')
+                    sc.marks_set.create(name='Class test 2')
+                    sc.marks_set.create(name='Class test 3')
+                    sc.marks_set.create(name='Quiz test')
+                    sc.marks_set.create(name='Mid Exam')
                     sc.marks_set.create(name='Semester End Exam')
         elif hasattr(instance, 'course'):
             stud_list = instance.class_id.student_set.all()
@@ -319,11 +322,11 @@ def create_marks(sender, instance, **kwargs):
                 except StudentCourse.DoesNotExist:
                     sc = StudentCourse(student=s, course=cr)
                     sc.save()
-                    sc.marks_set.create(name='Internal test 1')
-                    sc.marks_set.create(name='Internal test 2')
-                    sc.marks_set.create(name='Internal test 3')
-                    sc.marks_set.create(name='Event 1')
-                    sc.marks_set.create(name='Event 2')
+                    sc.marks_set.create(name='Class test 1')
+                    sc.marks_set.create(name='Class test 2')
+                    sc.marks_set.create(name='Class test 3')
+                    sc.marks_set.create(name='Quiz test')
+                    sc.marks_set.create(name='Mid Exam')
                     sc.marks_set.create(name='Semester End Exam')
 
 
